@@ -1,121 +1,747 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>교통약자 이동차량 서비스</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #005a9c;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        main {
-            padding: 1rem;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1, h2 {
-            color: #005a9c;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        label {
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-        input, button {
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-        button {
-            background-color: #005a9c;
-            color: white;
-            cursor: pointer;
-            margin-top: 1.5rem;
-            border: none;
-        }
-        button:hover {
-            background-color: #004070;
-        }
-        footer {
-            text-align: center;
-            padding: 1rem;
-            margin-top: 2rem;
-            background-color: #333;
-            color: white;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>글로모 이동지원 서비스</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Pretendard',sans-serif;
+}
+
+body{
+    background:#f5fbff;
+    color:#222;
+    overflow-x:hidden;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+a{
+    text-decoration:none;
+}
+
+ul{
+    list-style:none;
+}
+
+/* HEADER */
+
+header{
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:999;
+    background:rgba(255,255,255,0.95);
+    backdrop-filter:blur(10px);
+    box-shadow:0 2px 15px rgba(0,0,0,0.05);
+}
+
+.navbar{
+    width:90%;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 0;
+}
+
+.logo{
+    font-size:32px;
+    font-weight:800;
+    color:#18a8ff;
+}
+
+.menu{
+    display:flex;
+    gap:35px;
+}
+
+.menu a{
+    color:#333;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.menu a:hover{
+    color:#18a8ff;
+}
+
+.call-btn{
+    background:#18a8ff;
+    color:#fff;
+    padding:14px 28px;
+    border-radius:50px;
+    font-weight:700;
+    transition:0.3s;
+}
+
+.call-btn:hover{
+    background:#008de7;
+}
+
+/* HERO */
+
+.hero{
+    width:100%;
+    height:100vh;
+    background:
+    linear-gradient(rgba(0,140,255,0.45), rgba(0,190,255,0.35)),
+    url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop');
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:0 20px;
+}
+
+.hero-content{
+    color:#fff;
+    max-width:1000px;
+}
+
+.hero-content h1{
+    font-size:72px;
+    line-height:1.2;
+    margin-bottom:25px;
+    font-weight:800;
+    text-shadow:0 5px 20px rgba(0,0,0,0.3);
+}
+
+.hero-content p{
+    font-size:24px;
+    line-height:1.8;
+    margin-bottom:45px;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.hero-buttons a{
+    padding:18px 40px;
+    border-radius:60px;
+    font-size:18px;
+    font-weight:700;
+    transition:0.3s;
+}
+
+.btn-white{
+    background:#fff;
+    color:#18a8ff;
+}
+
+.btn-white:hover{
+    transform:translateY(-5px);
+}
+
+.btn-outline{
+    border:2px solid #fff;
+    color:#fff;
+}
+
+.btn-outline:hover{
+    background:#fff;
+    color:#18a8ff;
+}
+
+/* COMMON */
+
+section{
+    padding:110px 8%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.section-title h2{
+    font-size:50px;
+    color:#18a8ff;
+    margin-bottom:18px;
+}
+
+.section-title p{
+    font-size:20px;
+    color:#666;
+}
+
+/* SERVICE */
+
+.service-wrap{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.service-card{
+    background:#fff;
+    padding:40px 30px;
+    border-radius:28px;
+    box-shadow:0 10px 35px rgba(0,0,0,0.06);
+    transition:0.4s;
+}
+
+.service-card:hover{
+    transform:translateY(-10px);
+}
+
+.service-icon{
+    font-size:60px;
+    margin-bottom:20px;
+}
+
+.service-card h3{
+    color:#18a8ff;
+    margin-bottom:18px;
+    font-size:28px;
+}
+
+.service-card p{
+    line-height:1.9;
+    color:#666;
+    font-size:17px;
+}
+
+/* ABOUT */
+
+.about-section{
+    background:linear-gradient(135deg,#dff5ff,#eefbff);
+    border-radius:40px;
+    padding:70px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+}
+
+.about-section img{
+    width:100%;
+    border-radius:30px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.12);
+}
+
+.about-text h2{
+    font-size:48px;
+    color:#18a8ff;
+    margin-bottom:25px;
+}
+
+.about-text p{
+    font-size:18px;
+    line-height:2;
+    color:#555;
+    margin-bottom:20px;
+}
+
+.about-text ul li{
+    margin-bottom:15px;
+    font-size:18px;
+}
+
+/* PROCESS */
+
+.process-wrap{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:30px;
+}
+
+.process-card{
+    background:#fff;
+    border-radius:28px;
+    padding:40px 25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.06);
+}
+
+.process-number{
+    width:75px;
+    height:75px;
+    margin:auto;
+    margin-bottom:25px;
+    background:#18a8ff;
+    color:#fff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    font-weight:800;
+}
+
+.process-card h3{
+    margin-bottom:15px;
+    color:#18a8ff;
+    font-size:24px;
+}
+
+.process-card p{
+    line-height:1.8;
+    color:#666;
+}
+
+/* CTA */
+
+.cta{
+    background:linear-gradient(135deg,#18a8ff,#66d3ff);
+    padding:100px 30px;
+    border-radius:40px;
+    text-align:center;
+    color:#fff;
+}
+
+.cta h2{
+    font-size:56px;
+    margin-bottom:25px;
+}
+
+.cta p{
+    font-size:22px;
+    line-height:1.8;
+    margin-bottom:40px;
+}
+
+.cta a{
+    display:inline-block;
+    background:#fff;
+    color:#18a8ff;
+    padding:18px 42px;
+    border-radius:60px;
+    font-size:20px;
+    font-weight:800;
+}
+
+/* FOOTER */
+
+footer{
+    background:#0c2336;
+    color:#fff;
+    padding:70px 8%;
+}
+
+.footer-wrap{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:50px;
+}
+
+.footer-logo{
+    font-size:34px;
+    font-weight:800;
+    margin-bottom:20px;
+    color:#5fd2ff;
+}
+
+.footer-text{
+    line-height:2;
+    color:#ddd;
+}
+
+.footer-title{
+    font-size:24px;
+    margin-bottom:20px;
+    color:#5fd2ff;
+}
+
+.footer-links a{
+    display:block;
+    color:#ddd;
+    margin-bottom:12px;
+}
+
+.copy{
+    margin-top:50px;
+    text-align:center;
+    padding-top:25px;
+    border-top:1px solid rgba(255,255,255,0.1);
+    color:#aaa;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .menu{
+        display:none;
+    }
+
+    .hero-content h1{
+        font-size:42px;
+    }
+
+    .hero-content p{
+        font-size:18px;
+    }
+
+    .about-section{
+        grid-template-columns:1fr;
+        padding:40px;
+    }
+
+    .section-title h2{
+        font-size:36px;
+    }
+
+    .cta h2{
+        font-size:40px;
+    }
+
+    .footer-wrap{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
 </head>
+
 <body>
-    <header>
-        <h1>교통약자 이동차량 서비스</h1>
-    </header>
-    <main>
-        <div class="container">
-            <h2>차량 예약</h2>
-            <form id="booking-form">
-                <label for="pickup">출발지</label>
-                <input type="text" id="pickup" placeholder="출발지를 입력하세요" required>
-                
-                <label for="destination">목적지</label>
-                <input type="text" id="destination" placeholder="목적지를 입력하세요" required>
-                
-                <label for="datetime">예약 날짜 및 시간</label>
-                <input type="datetime-local" id="datetime" required>
-                
-                <button type="submit">예약하기</button>
-            </form>
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="navbar">
+
+        <div class="logo">GLOMO</div>
+
+        <div class="menu">
+            <a href="#">홈</a>
+            <a href="#">서비스</a>
+            <a href="#">병원동행</a>
+            <a href="#">이동지원</a>
+            <a href="#">고객센터</a>
         </div>
-        <div class="container" style="margin-top: 2rem;">
-            <h2>예약 현황</h2>
-            <div id="booking-status">
-                <p>현재 예약된 차량이 없습니다.</p>
+
+        <a href="#" class="call-btn">☎ 상담문의</a>
+
+    </div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            교통약자의<br>
+            이동 자유를 만듭니다
+        </h1>
+
+        <p>
+            휠체어 이동 · 병원동행 · 고령자 케어 · 임산부 이동지원<br>
+            모두를 위한 프리미엄 동행서비스 플랫폼
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#" class="btn-white">서비스 예약하기</a>
+
+            <a href="#" class="btn-outline">서비스 안내</a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SERVICE -->
+
+<section>
+
+    <div class="section-title">
+        <h2>이동지원 서비스</h2>
+        <p>
+            교통약자와 보호자를 위한 맞춤형 이동지원 솔루션
+        </p>
+    </div>
+
+    <div class="service-wrap">
+
+        <div class="service-card">
+            <div class="service-icon">♿</div>
+            <h3>휠체어 이동지원</h3>
+            <p>
+                휠체어 탑승 전용 차량과
+                전문 드라이버가 안전하고
+                편안한 이동을 지원합니다.
+            </p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🏥</div>
+            <h3>병원 동행서비스</h3>
+            <p>
+                병원 접수, 진료 대기,
+                약 수령, 귀가까지
+                보호자처럼 함께 동행합니다.
+            </p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">👵</div>
+            <h3>고령자 이동케어</h3>
+            <p>
+                거동이 불편한 어르신의
+                병원 및 외출 이동을
+                세심하게 지원합니다.
+            </p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">💙</div>
+            <h3>약자 이동서비스</h3>
+            <p>
+                장애인, 고령자,
+                교통약자를 위한
+                프리미엄 이동지원 서비스입니다.
+            </p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🤰</div>
+            <h3>임산부 안심 이동</h3>
+            <p>
+                산부인과 진료 및 외출 시
+                안전하고 편안한 이동 서비스를
+                제공합니다.
+            </p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🩹</div>
+            <h3>일시적 신체 불편자</h3>
+            <p>
+                골절, 수술 후 회복,
+                목발 이용 고객 등
+                이동 불편 고객을 지원합니다.
+            </p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">👨‍👩‍👧</div>
+            <h3>아이 동반 부모 이동</h3>
+            <p>
+                어린 아이와 함께 이동하는
+                부모님을 위한 카시트 및
+                안전 이동 서비스를 제공합니다.
+            </p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🚑</div>
+            <h3>응급대응 이동지원</h3>
+            <p>
+                응급처치 교육을 받은
+                드라이버가 안전하고 신속한
+                이동 환경을 제공합니다.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section>
+
+    <div class="about-section">
+
+        <img src="https://images.unsplash.com/photo-1516321310764-8d7f7b3fef6f?q=80&w=1200&auto=format&fit=crop" alt="동행서비스">
+
+        <div class="about-text">
+
+            <h2>왜 GLOMO 인가?</h2>
+
+            <p>
+                단순한 차량 이동이 아닌,
+                교통약자의 삶의 질과 이동의 자유를 위한
+                프리미엄 동행 플랫폼입니다.
+            </p>
+
+            <p>
+                전문 교육을 받은 드라이버와
+                체계적인 예약 시스템,
+                병원 및 복지기관 연계 서비스를 통해
+                안전하고 편리한 이동 환경을 제공합니다.
+            </p>
+
+            <ul>
+                <li>✔ 활동지원 교육 드라이버 운영</li>
+                <li>✔ 병원 및 복지기관 연계</li>
+                <li>✔ 실시간 위치 확인 서비스</li>
+                <li>✔ 예약 및 즉시 호출 가능</li>
+                <li>✔ 프리미엄 이동지원 시스템</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PROCESS -->
+
+<section>
+
+    <div class="section-title">
+        <h2>이용 방법</h2>
+        <p>
+            누구나 쉽고 편리하게 이용 가능합니다
+        </p>
+    </div>
+
+    <div class="process-wrap">
+
+        <div class="process-card">
+            <div class="process-number">1</div>
+            <h3>예약 접수</h3>
+            <p>
+                전화 또는 앱으로
+                간편하게 예약합니다.
+            </p>
+        </div>
+
+        <div class="process-card">
+            <div class="process-number">2</div>
+            <h3>드라이버 배정</h3>
+            <p>
+                전문 교육을 받은
+                드라이버가 배정됩니다.
+            </p>
+        </div>
+
+        <div class="process-card">
+            <div class="process-number">3</div>
+            <h3>안전 이동</h3>
+            <p>
+                목적지까지
+                안전하게 동행합니다.
+            </p>
+        </div>
+
+        <div class="process-card">
+            <div class="process-number">4</div>
+            <h3>서비스 완료</h3>
+            <p>
+                만족도 평가 후
+                서비스가 종료됩니다.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CTA -->
+
+<section>
+
+    <div class="cta">
+
+        <h2>
+            이동의 자유를 시작하세요
+        </h2>
+
+        <p>
+            교통약자 · 임산부 · 고령자 · 아이동반 부모님을 위한<br>
+            프리미엄 이동 및 동행 서비스
+        </p>
+
+        <a href="#">지금 상담하기</a>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-wrap">
+
+        <div>
+
+            <div class="footer-logo">
+                GLOMO
             </div>
+
+            <div class="footer-text">
+
+                교통약자 이동지원 플랫폼<br>
+                병원동행 · 휠체어 이동 · 프리미엄 동행서비스<br><br>
+
+                대표번호 : 1566-1401<br>
+                이메일 : glomo@mobility.com
+
+            </div>
+
         </div>
-    </main>
-    <footer>
-        <p>&copy; 2026 교통약자 이동차량 서비스. All Rights Reserved.</p>
-    </footer>
-    <script>
-        document.getElementById('booking-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const pickup = document.getElementById('pickup').value;
-            const destination = document.getElementById('destination').value;
-            const datetime = document.getElementById('datetime').value;
-            
-            const bookingStatus = document.getElementById('booking-status');
-            bookingStatus.innerHTML = `
-                <p><strong>예약 완료!</strong></p>
-                <p><strong>출발지:</strong> ${pickup}</p>
-                <p><strong>목적지:</strong> ${destination}</p>
-                <p><strong>예약 시간:</strong> ${new Date(datetime).toLocaleString()}</p>
-                <p>차량이 배차되는 대로 알려드리겠습니다.</p>
-            `;
-            
-            // Clear the form
-            document.getElementById('booking-form').reset();
-        });
-    </script>
+
+        <div>
+
+            <div class="footer-title">
+                서비스
+            </div>
+
+            <div class="footer-links">
+
+                <a href="#">병원동행</a>
+                <a href="#">휠체어 이동</a>
+                <a href="#">고령자 이동</a>
+                <a href="#">임산부 이동</a>
+
+            </div>
+
+        </div>
+
+        <div>
+
+            <div class="footer-title">
+                고객센터
+            </div>
+
+            <div class="footer-links">
+
+                <a href="#">공지사항</a>
+                <a href="#">이용약관</a>
+                <a href="#">개인정보처리방침</a>
+                <a href="#">문의하기</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="copy">
+        © 2026 GLOMO Mobility. All Rights Reserved.
+    </div>
+
+</footer>
+
 </body>
 </html>
