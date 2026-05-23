@@ -1,1 +1,121 @@
-/* Add styles here */
+:root {
+    --background-color: oklch(98% 0.02 240);
+    --text-color: oklch(20% 0.02 240);
+    --accent-color: oklch(65% 0.2 260);
+    --accent-color-dark: oklch(55% 0.2 260);
+    --container-bg: white;
+    --task-bg: oklch(95% 0.01 240);
+    --danger-color: oklch(70% 0.25 25);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding-top: 4rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    background-color: var(--container-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+h1 {
+    color: var(--accent-color);
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+#todo-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+#todo-input {
+    flex-grow: 1;
+    border: 2px solid var(--task-bg);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+#todo-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+#todo-form button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#todo-form button:hover {
+    background-color: var(--accent-color-dark);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+#todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--task-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.todo-item:hover {
+    background-color: oklch(92% 0.01 240);
+}
+
+.todo-item.completed span {
+    text-decoration: line-through;
+    color: oklch(60% 0.02 240);
+}
+
+.todo-item span {
+    flex-grow: 1;
+}
+
+.delete-btn {
+    background-color: transparent;
+    border: none;
+    color: var(--danger-color);
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.25rem;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.todo-item:hover .delete-btn {
+    opacity: 1;
+}
