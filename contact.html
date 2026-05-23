@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>문의하기 | GLOMO</title>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Pretendard', sans-serif; }
+    body { background: #f5fbff; color: #222; line-height: 1.6; }
+    header { background: #fff; padding: 20px 8%; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .logo { font-size: 24px; font-weight: 800; color: #18a8ff; text-decoration: none; }
+    main { max-width: 900px; margin: 40px auto; background: #fff; padding: 50px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    h1 { font-size: 32px; color: #18a8ff; margin-bottom: 30px; border-bottom: 2px solid #f0f0f0; padding-bottom: 15px; }
+    p { margin-bottom: 25px; color: #666; }
+    .contact-form { display: flex; flex-direction: column; gap: 20px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    label { font-weight: 600; color: #333; }
+    input, textarea { padding: 15px; border: 1px solid #ddd; border-radius: 10px; font-size: 16px; transition: 0.3s; }
+    input:focus, textarea:focus { outline: none; border-color: #18a8ff; box-shadow: 0 0 0 3px rgba(24, 168, 255, 0.1); }
+    button { background: #18a8ff; color: #fff; border: none; padding: 18px; border-radius: 10px; font-size: 18px; font-weight: 700; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+    button:hover { background: #008de7; transform: translateY(-2px); }
+    .contact-info { margin-top: 50px; padding-top: 30px; border-top: 1px solid #f0f0f0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .info-box h3 { font-size: 18px; color: #333; margin-bottom: 10px; }
+    .info-box p { color: #18a8ff; font-weight: 600; font-size: 20px; margin-bottom: 0; }
+    footer { text-align: center; padding: 40px; color: #999; font-size: 14px; }
+    @media (max-width: 768px) { main { padding: 30px; margin: 20px; } .contact-info { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">GLOMO</a>
+</header>
+
+<main>
+    <h1>문의하기</h1>
+    <p>서비스 이용 중 궁금하신 점이나 불편한 사항이 있으시면 언제든지 문의해 주세요.<br>담당자가 확인 후 신속하게 답변해 드리겠습니다.</p>
+
+    <form class="contact-form" onsubmit="alert('문의가 접수되었습니다. 감사합니다.'); return false;">
+        <div class="form-group">
+            <label for="name">성함 / 단체명</label>
+            <input type="text" id="name" placeholder="성함을 입력해 주세요" required>
+        </div>
+        <div class="form-group">
+            <label for="email">연락처 / 이메일</label>
+            <input type="text" id="email" placeholder="답변을 받으실 연락처를 입력해 주세요" required>
+        </div>
+        <div class="form-group">
+            <label for="subject">문의 제목</label>
+            <input type="text" id="subject" placeholder="제목을 입력해 주세요" required>
+        </div>
+        <div class="form-group">
+            <label for="message">문의 내용</label>
+            <textarea id="message" rows="6" placeholder="문의 내용을 상세히 작성해 주세요" required></textarea>
+        </div>
+        <button type="submit">문의 보내기</button>
+    </form>
+
+    <div class="contact-info">
+        <div class="info-box">
+            <h3>고객센터 대표번호</h3>
+            <p>1566-1401</p>
+        </div>
+        <div class="info-box">
+            <h3>이메일 문의</h3>
+            <p>glomo@mobility.com</p>
+        </div>
+    </div>
+</main>
+
+<footer>
+    © 2026 GLOMO Mobility. All Rights Reserved.
+</footer>
+
+</body>
+</html>
