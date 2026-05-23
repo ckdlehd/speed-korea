@@ -1,20 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
-    <link rel="stylesheet" href="style.css">
+    <title>교통약자 이동차량 서비스</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #005a9c;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            padding: 1rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #005a9c;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        input, button {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #005a9c;
+            color: white;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            border: none;
+        }
+        button:hover {
+            background-color: #004070;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+            background-color: #333;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>My To-Do List</h1>
-        <form id="todo-form">
-            <input type="text" id="todo-input" placeholder="Add a new task..." autocomplete="off">
-            <button type="submit">Add</button>
-        </form>
-        <ul id="todo-list"></ul>
-    </div>
-    <script src="main.js"></script>
+    <header>
+        <h1>교통약자 이동차량 서비스</h1>
+    </header>
+    <main>
+        <div class="container">
+            <h2>차량 예약</h2>
+            <form id="booking-form">
+                <label for="pickup">출발지</label>
+                <input type="text" id="pickup" placeholder="출발지를 입력하세요" required>
+                
+                <label for="destination">목적지</label>
+                <input type="text" id="destination" placeholder="목적지를 입력하세요" required>
+                
+                <label for="datetime">예약 날짜 및 시간</label>
+                <input type="datetime-local" id="datetime" required>
+                
+                <button type="submit">예약하기</button>
+            </form>
+        </div>
+        <div class="container" style="margin-top: 2rem;">
+            <h2>예약 현황</h2>
+            <div id="booking-status">
+                <p>현재 예약된 차량이 없습니다.</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 교통약자 이동차량 서비스. All Rights Reserved.</p>
+    </footer>
+    <script>
+        document.getElementById('booking-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const pickup = document.getElementById('pickup').value;
+            const destination = document.getElementById('destination').value;
+            const datetime = document.getElementById('datetime').value;
+            
+            const bookingStatus = document.getElementById('booking-status');
+            bookingStatus.innerHTML = `
+                <p><strong>예약 완료!</strong></p>
+                <p><strong>출발지:</strong> ${pickup}</p>
+                <p><strong>목적지:</strong> ${destination}</p>
+                <p><strong>예약 시간:</strong> ${new Date(datetime).toLocaleString()}</p>
+                <p>차량이 배차되는 대로 알려드리겠습니다.</p>
+            `;
+            
+            // Clear the form
+            document.getElementById('booking-form').reset();
+        });
+    </script>
 </body>
 </html>
